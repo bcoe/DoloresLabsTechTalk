@@ -48,6 +48,8 @@ Content Scripts
 A Sane Paradigm
 ---------------
 
+![Diagram of Design in Action](https://github.com/bcoe/DoloresLabsTechTalk/raw/master/images/extension-paradigm.png)
+
 * Message queues are a great way of approaching the problem.
  * Content Scripts pass messages to the background page.
  * The background script makes requests to the server and returns messages to content scripts.
