@@ -14,7 +14,8 @@
   "permissions": [
     "http://localhost/*",
     "tabs",
-    "contextMenus"
+    "contextMenus",
+    "notifications"
   ],
   "content_scripts": [
     {
