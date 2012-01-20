@@ -18,12 +18,14 @@
   ],
   "content_scripts": [
     {
-        "matches": ["http://mail.google.com/*"],
+        "matches": ["http://*/*", "https://*/*"],
         "js": [
-            "lib/jquery.js"
+            "lib/jquery.js",
+            "lib/jquery-ui.js",
+            "lib/content.js"
         ],
-        "css": ["css/main.css"],
-        "all_frames": true
+        "css": ["css/content.css"],
+        "all_frames": false
     }
   ]
 }

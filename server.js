@@ -30,9 +30,7 @@ nodemailer.SMTP = {
 	pass: process.env.GMAIL_PASSWORD  // used only when use_authentication is true*/
 };
 
-function sendMail(imageData, imageUrl, res) {
-	
-	var filename = ( imageUrl.match(/^.*\/([^/]*)$/)[1] ).match(/([^?&]*)/)[1];
+function sendMail(imageData, filename, email, callback) {
 	
 	var attachmentList = [{
 		filename: filename,
@@ -41,32 +39,36 @@ function sendMail(imageData, imageUrl, res) {
 		
 	var mailData = {
 		sender: process.env.GMAIL_ACCOUNT,
-		to: process.env.GMAIL_ACCOUNT,
+		to: email,
 		subject: "Here is an image for you",
 		body: "Here's that image you asked for.",
 		attachments: attachmentList
 	}
 		
 	nodemailer.send_mail(mailData, function(err, success) {
-		res.contentType('application/json');
-		if (err) {
-			res.send({
-				success: false
-			});		
-		} else {
-			res.send({
-				success: true
-			});
-		}
+		callback(err, success);
 	});
 }
 
 var app = express.createServer();
 
 app.get('/', function(req, res){
-	var imageUrl = req.param('imageUrl');
+	var imageUrl = req.param('imageUrl'),
+		filename = ( imageUrl.match(/^.*\/([^/]*)$/)[1] ).match(/([^?&]*)/)[1];
+	
 	downloadImage(imageUrl, function(imageData) {
-		sendMail(imageData, imageUrl, res);
+		sendMail(imageData, filename, req.param('email'), function(err, success) {
+			res.contentType('application/json');
+			if (err) {
+				res.send({
+					success: false
+				});		
+			} else {
+				res.send({
+					success: true
+				});
+			}
+		});
 	});
 });
 
