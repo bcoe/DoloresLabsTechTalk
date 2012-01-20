@@ -1,0 +1,29 @@
+{
+  "name": "ImageMaily",
+  "version": "1.0.0",
+  "description": "Send an image to your email.",
+  "background_page" : "background.html",
+  "page_action": {
+    "default_title": "ImageMaily"
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "permissions": [
+    "http://localhost/*",
+    "tabs",
+    "contextMenus"
+  ],
+  "content_scripts": [
+    {
+        "matches": ["http://mail.google.com/*"],
+        "js": [
+            "lib/jquery.js"
+        ],
+        "css": ["css/main.css"],
+        "all_frames": true
+    }
+  ]
+}
