@@ -5,7 +5,7 @@ Why Create a Chrome Extension?
 ------------------------------
 
 * It's a great way to integrate seamlessly with a third-party site like Gmail.
-** It in turn solves the "other site" problem.
+ * It in turn solves the "other site" problem.
 * The Chrome Web Store is a wonderful source of traffic.
 * All your friends are doing it.
 
@@ -47,5 +47,5 @@ A Sane Paradigm
 ---------------
 
 * Message queues are a great way of approaching the problem.
-** Content Scripts pass messages to the background page.
-** The background script makes requests to the server and returns messages to content scripts.
+ * Content Scripts pass messages to the background page.
+ * The background script makes requests to the server and returns messages to content scripts.
