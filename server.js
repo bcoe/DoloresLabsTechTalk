@@ -40,7 +40,7 @@ function sendMail(imageData, filename, email, callback) {
 	var mailData = {
 		sender: process.env.GMAIL_ACCOUNT,
 		to: email,
-		subject: "Here is an image for you",
+		subject: "Here is an image for you: " + filename,
 		body: "Here's that image you asked for.",
 		attachments: attachmentList
 	}
