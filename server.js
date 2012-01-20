@@ -19,7 +19,7 @@ function downloadImage(imageUrl, callback) {
 	
 	    response.addListener("end", function() {
 			callback(body);
-		}
+		});
 	});
 }
 
@@ -30,10 +30,13 @@ nodemailer.SMTP = {
 	pass: process.env.GMAIL_PASSWORD  // used only when use_authentication is true*/
 };
 
-function sendMail(imageData, res) {
+function sendMail(imageData, imageUrl, res) {
+	
+	var filename = ( imageUrl.match(/^.*\/([^/]*)$/)[1] ).match(/([^?&]*)/)[1];
+	
 	var attachmentList = [{
-		filename: imageUrl.match(/^.*\/([^/]*)$/)[1],
-		contents: new Buffer(body, 'binary')
+		filename: filename,
+		contents: new Buffer(imageData, 'binary')
 	}];
 		
 	var mailData = {
@@ -63,7 +66,7 @@ var app = express.createServer();
 app.get('/', function(req, res){
 	var imageUrl = req.param('imageUrl');
 	downloadImage(imageUrl, function(imageData) {
-		sendMail(imageData, res);
+		sendMail(imageData, imageUrl, res);
 	});
 });
 
