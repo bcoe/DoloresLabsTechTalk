@@ -29,18 +29,19 @@ The Example, ImageMaily
 
 The extension in this presentation lets you right-click on an image on a webpage and send it to an email address.
 
-Background Pages
-----------------
+The Building Blocks
+-------------------
+
+_Background Pages_
 
 * One background page runs for your extension.
 * Is the only place where XHR requests to the server can originate from.
 
-Context Menus
--------------
+_Context Menus_
+
 * Let you add new right click options.
 
-Content Scripts
----------------
+_Content Scripts_
 
 * Allow you to interact with the current page in a tab.
 * Cannot make requests to the server.
