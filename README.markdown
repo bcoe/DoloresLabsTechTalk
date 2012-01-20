@@ -21,13 +21,13 @@ Surmounting these Challenges
 ----------------------------
 
 * Learning to work within the paradigm.
-* Writing clean, well designed, JavaScript.
+* Writing clean, well designed, JavaScript (make sure your DOM selectors are based on sound assumptions).
 * Listening to this presentation.
 
 The Example, ImageMaily
 -----------------------
 
-The extension in this presentation lets you right-click on an image on a webpage and send it to an email address.
+ImageMaily lets you right-click on an image on a webpage and send it to an email address.
 
 The Building Blocks
 -------------------
@@ -39,7 +39,7 @@ _Background Pages_
 
 _Context Menus_
 
-* Let you add new right click options.
+* Let you add new right click options to specific types of page elements.
 
 _Content Scripts_
 
@@ -51,7 +51,7 @@ A Sane Paradigm
 
 ![Diagram of Design in Action](https://github.com/bcoe/DoloresLabsTechTalk/raw/master/images/extension-paradigm.png)
 
-* Message queues are a great way of approaching the problem.
+* Message queues are a great way of thinking about designing for a Chrome extension.
  * Content Scripts pass messages to the background page.
  * The background script makes requests to the server and returns messages to content scripts.
 
@@ -141,3 +141,35 @@ Background.prototype.sendEmail = function(request, tab) {
 	});
 };
 ```
+
+The Server
+----------
+
+The server, written in Node.js, handles downloading the image and emailing it.
+
+```javascript
+app.get('/', function(req, res){
+	var imageUrl = req.param('imageUrl'),
+		filename = ( imageUrl.match(/^.*\/([^/]*)$/)[1] ).match(/([^?&]*)/)[1];
+	
+	downloadImage(imageUrl, function(imageData) {
+		sendMail(imageData, filename, req.param('email'), function(err, success) {
+			res.contentType('application/json');
+			if (err) {
+				res.send({
+					success: false
+				});		
+			} else {
+				res.send({
+					success: true
+				});
+			}
+		});
+	});
+});
+```
+
+Conclusion
+----------
+
+If approached in the right way, Chrome Extension development is a fun paradigm to work within and is a good way to get more eyeballs on your application.
