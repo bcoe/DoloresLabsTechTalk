@@ -1,6 +1,8 @@
 Chrome Extension Development, By Example
 ========================================
 
+_Ben Coe (@benjamincoe)_
+
 Why Create a Chrome Extension?
 ------------------------------
 
