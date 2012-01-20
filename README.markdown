@@ -172,4 +172,4 @@ app.get('/', function(req, res){
 Conclusion
 ----------
 
-If approached in the right way, Chrome Extension development can be a fun paradigm to work within. Releasing extensions is a great way to get more users for your application.
+If approached in a sane, methodical way, Chrome Extension development can be a fun paradigm to work within. Building extensions is a great way to get more users for your SaaS offering.
