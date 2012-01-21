@@ -35,7 +35,7 @@ The Building Blocks
 _Background Pages_
 
 * One background page runs for your extension.
-* Is the only place where XHR requests to the server can originate from.
+* It can make XHR requests to the endpoints specified in the manifest.
 
 _Context Menus_
 
@@ -43,8 +43,7 @@ _Context Menus_
 
 _Content Scripts_
 
-* Allow you to interact with the current page in a tab.
-* Cannot make requests to the server.
+* Injected into every page, allow you to modify the DOM of pages (the background scripts can't do this).
 
 A Sane Paradigm
 ---------------
