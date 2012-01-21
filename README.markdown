@@ -36,6 +36,7 @@ _Background Pages_
 
 * One background page runs for your extension.
 * It can make XHR requests to the endpoints specified in the manifest.
+* Can't modify the DOM of pages.
 
 _Context Menus_
 
@@ -43,7 +44,9 @@ _Context Menus_
 
 _Content Scripts_
 
-* Injected into every page, allow you to modify the DOM of pages (the background scripts can't do this).
+* Injected into every page and iframe, allow you to modify the DOM of the pages containing them.
+* The background page can be used to communicate between different content scripts, they are otherwise isolated.
+* Content scripts are sandboxed in such a way that they cannot use variables and functions defined by other scripts on the page.
 
 A Sane Paradigm
 ---------------
@@ -171,4 +174,4 @@ app.get('/', function(req, res){
 Conclusion
 ----------
 
-If approached in a sane, methodical, way Chrome Extension development can be a fun paradigm to work within. Building extensions is a great way to get more users for your SaaS offering.
+If approached in a sane, methodical way Chrome Extension development can be a fun paradigm to work within. Building extensions is a great way to get more users for your SaaS offering.
